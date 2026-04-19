@@ -21,14 +21,18 @@
   html { scroll-behavior: smooth; }
   body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; overflow-x: hidden; }
 
-  .bg-blobs { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
-  .blob { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.45; }
-  .blob-1 { width: 600px; height: 600px; background: #d4e4f7; top: -100px; right: -150px; animation: drift1 20s ease-in-out infinite; }
-  .blob-2 { width: 500px; height: 500px; background: #f0e6d3; bottom: 10%; left: -100px; animation: drift2 25s ease-in-out infinite; }
-  .blob-3 { width: 350px; height: 350px; background: #e8d5f0; top: 40%; right: 20%; animation: drift3 18s ease-in-out infinite; }
-  @keyframes drift1 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-30px,40px)} }
-  @keyframes drift2 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(40px,-30px)} }
-  @keyframes drift3 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-20px,20px)} }
+  /* Анімований градієнт на фоні */
+  .bg-canvas {
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background: linear-gradient(125deg, #f5f4f0, #e8d5f0, #d4e4f7, #f0e6d3);
+    background-size: 400% 400%;
+    animation: aurora 15s ease infinite;
+  }
+  @keyframes aurora {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
 
   .wrapper { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
 
@@ -38,8 +42,9 @@
     background: rgba(245,244,240,0.72); border-bottom: 1px solid rgba(255,255,255,0.5);
   }
   .nav-inner { max-width: 1100px; margin: 0 auto; padding: 0 2rem; height: 60px; display: flex; align-items: center; justify-content: space-between; }
-  .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 300; color: var(--text); text-decoration: none; letter-spacing: 0.02em; }
-  .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
+  .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 300; color: var(--text); text-decoration: none; letter-spacing: 0.02em; flex-shrink: 0; }
+  
+  .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; margin-left: auto; }
   .nav-links a { font-size: 0.82rem; font-weight: 400; color: var(--text-muted); text-decoration: none; letter-spacing: 0.04em; text-transform: uppercase; transition: color 0.2s; }
   .nav-links a:hover { color: var(--text); }
 
@@ -47,11 +52,12 @@
   .lang-btn { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.05em; padding: 4px 10px; border-radius: 50px; border: none; cursor: pointer; background: transparent; color: var(--text-muted); transition: all 0.2s; font-family: 'DM Sans', sans-serif; }
   .lang-btn.active { background: var(--text); color: white; }
 
-  .nav-right { display: flex; align-items: center; gap: 0.75rem; }
+  .nav-right { display: flex; align-items: center; gap: 0.75rem; margin-left: 2rem; }
   .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
   .hamburger span { display: block; width: 22px; height: 1.5px; background: var(--text); transition: all 0.3s; }
 
-  .hero { padding: 160px 0 100px; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+  /* Hero секція з вирівнюванням по нижньому краю */
+  .hero { padding: 160px 0 100px; display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 4rem; align-items: end; }
   .hero-tag { font-size: 0.75rem; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem; }
   .hero-tag::before { content: ''; display: block; width: 24px; height: 1px; background: var(--text-muted); }
   .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(3rem, 5vw, 4.5rem); font-weight: 300; line-height: 1.1; letter-spacing: -0.01em; margin-bottom: 1.5rem; }
@@ -59,7 +65,6 @@
   .hero-desc { font-size: 1rem; color: var(--text-muted); line-height: 1.8; max-width: 420px; margin-bottom: 2.5rem; font-weight: 300; }
   .hero-cta { display: inline-flex; align-items: center; gap: 0.75rem; padding: 0.85rem 2rem; background: var(--text); color: white; text-decoration: none; font-size: 0.82rem; font-weight: 400; letter-spacing: 0.06em; text-transform: uppercase; border-radius: 50px; transition: all 0.3s; }
   .hero-cta:hover { background: #333; transform: translateY(-2px); }
-  .hero-cta svg { width: 14px; height: 14px; }
 
   .hero-visual { display: flex; flex-direction: column; gap: 1rem; align-items: flex-end; }
   .glass-card-sm { background: var(--glass); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid var(--glass-border); border-radius: 20px; padding: 1.25rem 1.5rem; box-shadow: 0 8px 32px var(--glass-shadow); }
@@ -140,7 +145,6 @@
   .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
   .form-submit { padding: 1rem 2rem; background: var(--text); color: white; border: none; border-radius: 50px; font-family: 'DM Sans', sans-serif; font-size: 0.82rem; font-weight: 400; letter-spacing: 0.06em; text-transform: uppercase; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-top: 0.5rem; }
   .form-submit:hover { background: #333; transform: translateY(-2px); }
-  .form-submit:active { transform: translateY(0); }
   .form-submit svg { width: 14px; height: 14px; }
   .form-success { display: none; text-align: center; padding: 2rem; background: rgba(76,175,133,0.08); border: 1px solid rgba(76,175,133,0.2); border-radius: 16px; color: #2d7a57; font-size: 0.9rem; line-height: 1.7; }
   .form-success.show { display: block; }
@@ -160,7 +164,9 @@
   .reveal-delay-4 { transition-delay: 0.4s; }
 
   @media (max-width: 900px) {
-    .hero { grid-template-columns: 1fr; padding: 130px 0 70px; gap: 3rem; }
+    .nav-inner { justify-content: space-between; }
+    .nav-links { display: none; margin-left: 0; }
+    .hero { grid-template-columns: 1fr; padding: 130px 0 70px; gap: 3rem; align-items: start; }
     .hero-visual { align-items: flex-start; flex-direction: row; flex-wrap: wrap; }
     .about-grid { grid-template-columns: 1fr; gap: 3rem; }
     .contact-wrap { grid-template-columns: 1fr; gap: 2.5rem; padding: 2.5rem; }
@@ -169,7 +175,6 @@
   }
   @media (max-width: 600px) {
     .wrapper { padding: 0 1.25rem; }
-    .nav-links { display: none; }
     .nav-links.open { display: flex; flex-direction: column; position: fixed; top: 60px; left: 0; right: 0; background: rgba(245,244,240,0.97); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); padding: 1.5rem 2rem; border-bottom: 1px solid rgba(255,255,255,0.5); gap: 1.25rem; z-index: 99; }
     .hamburger { display: flex; }
     .lang-toggle-desktop { display: none !important; }
@@ -187,11 +192,7 @@
 </head>
 <body>
 
-<div class="bg-blobs">
-  <div class="blob blob-1"></div>
-  <div class="blob blob-2"></div>
-  <div class="blob blob-3"></div>
-</div>
+<div class="bg-canvas"></div>
 
 <nav>
   <div class="nav-inner">
@@ -201,15 +202,13 @@
       <li><a href="#work" class="t" data-uk="Роботи" data-en="Work">Роботи</a></li>
       <li><a href="#experience" class="t" data-uk="Досвід" data-en="Experience">Досвід</a></li>
       <li><a href="#contact" class="t" data-uk="Контакт" data-en="Contact">Контакт</a></li>
-      <li>
-        <div class="lang-toggle lang-toggle-desktop">
-          <button class="lang-btn active" id="btn-uk-d" onclick="setLang('uk')">УКР</button>
-          <button class="lang-btn" id="btn-en-d" onclick="setLang('en')">ENG</button>
-        </div>
-      </li>
     </ul>
     <div class="nav-right">
-      <div class="lang-toggle" id="lang-mob">
+      <div class="lang-toggle lang-toggle-desktop">
+        <button class="lang-btn active" id="btn-uk-d" onclick="setLang('uk')">УКР</button>
+        <button class="lang-btn" id="btn-en-d" onclick="setLang('en')">ENG</button>
+      </div>
+      <div class="lang-toggle" id="lang-mob" style="display:none;">
         <button class="lang-btn active" id="btn-uk-m" onclick="setLang('uk')">УКР</button>
         <button class="lang-btn" id="btn-en-m" onclick="setLang('en')">ENG</button>
       </div>
@@ -232,8 +231,7 @@
           Графічна дизайнерка з аналітичним підходом і академічною художньою базою. Створюю цілісні візуальні системи, де дизайн є інструментом трансляції сенсів.
         </p>
         <a href="#contact" class="hero-cta reveal reveal-delay-3 t"
-          data-uk="Зв'яжіться зі мною" data-en="Get in touch"
-          data-suffix-uk="" data-suffix-en="">
+          data-uk="Зв'яжіться зі мною" data-en="Get in touch">
           Зв'яжіться зі мною
           <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 7h10M8 3l4 4-4 4"/></svg>
         </a>
@@ -372,7 +370,7 @@
       </a>
       <a href="https://www.behance.net/gallery/244862017/Branding-identity-for-Coffee-Shop-SMM-Design" target="_blank" class="case-card reveal reveal-delay-4">
         <div class="case-img-wrap">
-          <img class="case-img" src="https://mir-s3-cdn-cf.behance.net/projects/404/ba1f3c244862017.Y3JvcCwzMjCustiI2LDE1MjgsNzIsMA.jpg" alt="Coffee Shop Branding" loading="lazy">
+          <img class="case-img" src="https://mir-s3-cdn-cf.behance.net/projects/404/ba1f3c244862017.Y3JvcCwzMjMyLDI1MjgsNzIsMA.jpg" alt="Coffee Shop Branding" loading="lazy">
         </div>
         <div class="case-body">
           <div class="case-num t" data-uk="04 · Айдентика" data-en="04 · Identity">04 · Айдентика</div>
@@ -585,8 +583,14 @@ document.querySelectorAll('#nav-links a:not(.lang-btn)').forEach(a => {
 // mobile: show only mob lang toggle
 function checkMobile() {
   const mob = document.getElementById('lang-mob');
-  if (window.innerWidth <= 600) { mob.style.display = 'flex'; }
-  else { mob.style.display = 'none'; }
+  const desktopLang = document.querySelector('.lang-toggle-desktop');
+  if (window.innerWidth <= 900) { 
+    mob.style.display = 'flex';
+    if(desktopLang) desktopLang.style.display = 'none';
+  } else { 
+    mob.style.display = 'none';
+    if(desktopLang) desktopLang.style.display = 'flex';
+  }
 }
 checkMobile();
 window.addEventListener('resize', checkMobile);
