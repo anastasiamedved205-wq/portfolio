@@ -20,7 +20,6 @@
   }
   html { scroll-behavior: smooth; }
   
-  /* Основний шрифт сайту — Raleway */
   body { font-family: 'Raleway', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; overflow-x: hidden; }
 
   /* Анімований градієнт на фоні */
@@ -45,7 +44,6 @@
   }
   .nav-inner { max-width: 1100px; margin: 0 auto; padding: 0 2rem; height: 60px; display: flex; align-items: center; justify-content: space-between; }
   
-  /* Логотип тепер Raleway */
   .nav-logo { font-family: 'Raleway', sans-serif; font-size: 0.95rem; font-weight: 700; color: var(--text); text-decoration: none; letter-spacing: 0.02em; flex-shrink: 0; }
   
   .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; margin-left: auto; }
@@ -65,7 +63,6 @@
   .hero-tag { font-size: 0.75rem; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem; }
   .hero-tag::before { content: ''; display: block; width: 24px; height: 1px; background: var(--text-muted); }
   
-  /* Головний заголовок — Raleway Bold */
   .hero h1 { font-family: 'Raleway', sans-serif; font-size: clamp(3rem, 5vw, 4.5rem); font-weight: 700; line-height: 1.1; letter-spacing: -0.01em; margin-bottom: 1.5rem; }
   .hero h1 em { font-style: italic; font-weight: 700; }
   
@@ -87,14 +84,32 @@
   .section-label { font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 3rem; display: flex; align-items: center; gap: 1rem; }
   .section-label::after { content: ''; flex: 1; max-width: 80px; height: 1px; background: var(--text-muted); opacity: 0.3; }
 
-  .about-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 6rem; align-items: start; }
+  /* ВИПРАВЛЕННЯ СІТКИ ABOUT */
+  .about-grid { 
+    display: grid; 
+    grid-template-columns: 1fr 1.2fr; 
+    gap: 6rem; 
+    align-items: stretch; /* Розтягує ліву колонку на висоту правої */
+  }
+
+  .about-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Головний інструмент вирівнювання: Верх і Низ */
+  }
   
-  /* Заголовок секції — Raleway Bold */
-  .about-title { font-family: 'Raleway', sans-serif; font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 700; line-height: 1.2; margin-bottom: 2rem; }
+  .about-title { font-family: 'Raleway', sans-serif; font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 700; line-height: 1.1; margin-bottom: 2rem; }
   .about-title em { font-style: italic; }
   
   .about-text { font-size: 0.95rem; line-height: 1.9; color: var(--text-muted); font-weight: 300; margin-bottom: 1.25rem; }
-  .about-skills { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 2rem; }
+  
+  .about-skills { 
+    display: flex; 
+    flex-wrap: wrap; 
+    gap: 0.6rem; 
+    margin-top: auto; /* Додатково штовхає блок вниз */
+    padding-top: 3rem;
+  }
   .skill-tag { padding: 0.4rem 1rem; border: 1px solid rgba(0,0,0,0.15); border-radius: 50px; font-size: 0.78rem; letter-spacing: 0.03em; color: var(--text-muted); transition: all 0.2s; }
   .skill-tag:hover { border-color: var(--text); color: var(--text); }
 
@@ -108,10 +123,7 @@
   .hr { height: 1px; background: rgba(0,0,0,0.08); margin: 1.75rem 0; }
 
   .work-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem; }
-  
-  /* Заголовок робіт — Raleway Bold */
   .work-title { font-family: 'Raleway', sans-serif; font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 700; line-height: 1.15; }
-  
   .work-link { font-size: 0.8rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid rgba(0,0,0,0.2); padding-bottom: 2px; transition: all 0.2s; }
   .work-link:hover { color: var(--text); border-color: var(--text); }
 
@@ -123,7 +135,7 @@
   .case-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1); display: block; }
   .case-body { padding: 1.5rem; }
   .case-num { font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.4rem; }
-  .case-name { font-size: 1rem; font-weight: 700; margin-bottom: 0.4rem; line-height: 1.3; } /* Назви кейсів також зробив жирнішими */
+  .case-name { font-size: 1rem; font-weight: 700; margin-bottom: 0.4rem; line-height: 1.3; }
   .case-type { font-size: 0.8rem; color: var(--text-muted); font-weight: 300; }
   .case-arrow { display: flex; justify-content: flex-end; padding: 0 1.5rem 1.25rem; }
   .case-arrow svg { width: 18px; height: 18px; color: var(--text-muted); transition: transform 0.3s, color 0.3s; }
@@ -132,21 +144,15 @@
   .exp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
   .exp-card { background: var(--glass); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid var(--glass-border); border-radius: 24px; padding: 2rem; box-shadow: 0 8px 32px var(--glass-shadow); }
   .exp-period { font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.5rem; }
-  
-  /* Ролі в досвіді — Raleway Bold */
   .exp-role { font-family: 'Raleway', sans-serif; font-size: 1.4rem; font-weight: 700; margin-bottom: 0.35rem; line-height: 1.2; }
-  
   .exp-place { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 1.25rem; }
   .exp-list { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
   .exp-list li { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; font-weight: 300; padding-left: 1rem; position: relative; }
   .exp-list li::before { content: '—'; position: absolute; left: 0; color: rgba(0,0,0,0.2); }
 
   .contact-wrap { background: var(--glass); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border: 1px solid var(--glass-border); border-radius: 32px; padding: 4rem; box-shadow: 0 16px 64px var(--glass-shadow); display: grid; grid-template-columns: 1fr 1.4fr; gap: 4rem; align-items: start; }
-  
-  /* Контактний заголовок — Raleway Bold */
   .contact-title { font-family: 'Raleway', sans-serif; font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 700; margin-bottom: 1.5rem; line-height: 1.2; }
   .contact-title em { font-style: italic; }
-  
   .contact-desc { font-size: 0.9rem; color: var(--text-muted); line-height: 1.8; font-weight: 300; margin-bottom: 2.5rem; }
   .contact-info { display: flex; flex-direction: column; gap: 1rem; }
   .contact-link { display: flex; align-items: center; gap: 0.75rem; font-size: 0.85rem; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
@@ -170,10 +176,7 @@
 
   footer { padding: 3rem 0; border-top: 1px solid rgba(0,0,0,0.08); }
   .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; font-size: 0.8rem; color: var(--text-muted); }
-  
-  /* Футер лого — Raleway Bold */
   .footer-logo { font-family: 'Raleway', sans-serif; font-size: 1.1rem; font-weight: 700; }
-  
   .footer-links { display: flex; gap: 1.5rem; }
   .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 0.8rem; transition: color 0.2s; }
   .footer-links a:hover { color: var(--text); }
@@ -245,7 +248,7 @@
     <div class="hero">
       <div>
         <div class="hero-tag reveal t" data-uk="Дизайнерка · Україна" data-en="Designer · Ukraine">Дизайнерка · Україна</div>
-        <h1 class="reveal reveal-delay-1 t" data-uk="Дизайн, що<br><em>говорить</em> сам" data-en="Design that<br><em>speaks</em> for itself">Дизайн як <br><em>інструмент</em> </h1>
+        <h1 class="reveal reveal-delay-1 t" data-uk="Дизайн як <br><em>інструмент</em>" data-en="Design as a<br><em>tool</em>">Дизайн як <br><em>інструмент</em> </h1>
         <p class="hero-desc reveal reveal-delay-2 t"
           data-uk="Графічна та UI/UX дизайнерка з аналітичним підходом і академічною художньою базою. Створюю цілісні візуальні системи, де дизайн є інструментом трансляції сенсів."
           data-en="Graphic and UI/UX designer with an analytical approach and an academic artistic background. I create holistic visual systems where design is a tool for conveying meaning.">
@@ -283,20 +286,24 @@
 
 <section class="section" id="about">
   <div class="wrapper">
-   <div class="section-label reveal t" data-uk="Навички" data-en="Skills">Навички</div>
+    <div class="section-label reveal t" data-uk="Навички" data-en="Skills">Навички</div>
+    
     <div class="about-grid">
-      <div>
-        <h2 class="about-title reveal t" data-uk="Про<br><em>мене</em>" data-en="About<br><em>me</em>">Про<br><em>мене</em></h2>
-        <p class="about-text reveal reveal-delay-1 t"
-          data-uk="Поєдную навички глибокого дослідження з практичним досвідом лідерства в креативній команді та розробкою e-commerce проєктів для ринку США."
-          data-en="I combine deep research skills with practical experience leading a creative team and developing e-commerce projects for the US market.">
-          Поєдную навички глибокого дослідження з практичним досвідом лідерства в креативній команді та розробкою e-commerce проєктів для ринку США.
-        </p>
-        <p class="about-text reveal reveal-delay-2 t"
-          data-uk="Випускниця Художньої школи з відзнакою. Студентка КНУ ім. Тараса Шевченка. Пройшла курси з UI/UX дизайну — типографіка, кольористика, анімація, нейромережі."
-          data-en="Art School graduate with distinction. Student at Taras Shevchenko National University. Completed UI/UX design courses — typography, colour theory, animation, AI tools.">
-          Випускниця Художньої школи з відзнакою. Студентка КНУ ім. Тараса Шевченка. Пройшла курси з UI/UX дизайну — типографіка, кольористика, анімація, нейромережі.
-        </p>
+      <div class="about-left">
+        <div class="about-top-content">
+          <h2 class="about-title reveal t" data-uk="Про<br><em>мене</em>" data-en="About<br><em>me</em>">Про<br><em>мене</em></h2>
+          <p class="about-text reveal reveal-delay-1 t"
+            data-uk="Поєдную навички глибокого дослідження з практичним досвідом лідерства в креативній команді та розробкою e-commerce проєктів для ринку США."
+            data-en="I combine deep research skills with practical experience leading a creative team and developing e-commerce projects for the US market.">
+            Поєдную навички глибокого дослідження з практичним досвідом лідерства в креативній команді та розробкою e-commerce проєктів для ринку США.
+          </p>
+          <p class="about-text reveal reveal-delay-2 t"
+            data-uk="Випускниця Художньої школи з відзнакою. Студентка КНУ ім. Тараса Шевченка. Пройшла курси з UI/UX дизайну — типографіка, кольористика, анімація, нейромережі."
+            data-en="Art School graduate with distinction. Student at Taras Shevchenko National University. Completed UI/UX design courses — typography, colour theory, animation, AI tools.">
+            Випускниця Художньої школи з відзнакою. Студентка КНУ ім. Тараса Шевченка. Пройшла курси з UI/UX дизайну — типографіка, кольористика, анімація, нейромережі.
+          </p>
+        </div>
+
         <div class="about-skills reveal reveal-delay-3">
           <span class="skill-tag">Branding</span>
           <span class="skill-tag">UI/UX Design</span>
@@ -310,6 +317,7 @@
           <span class="skill-tag">AI Tools</span>
         </div>
       </div>
+
       <div class="about-glass reveal reveal-delay-2">
         <div class="about-detail">
           <div class="about-detail-label t" data-uk="Локація" data-en="Location">Локація</div>
@@ -391,7 +399,7 @@
       </a>
       <a href="https://www.behance.net/gallery/244862017/Branding-identity-for-Coffee-Shop-SMM-Design" target="_blank" class="case-card reveal reveal-delay-4">
         <div class="case-img-wrap">
-          <img class="case-img" src="https://mir-s3-cdn-cf.behance.net/projects/404/ba1f3c244862017.Y3JvcCwzMjMyLDI1MjgsNzIsMA.jpg" alt="Coffee Shop Branding" loading="lazy">
+          <img class="case-img" src="https://mir-s3-cdn-cf.behance.net/projects/404/ba1f3c244862017.Y3JvcCwzMjCustidiLDI1MjgsNzIsMA.jpg" alt="Coffee Shop Branding" loading="lazy">
         </div>
         <div class="case-body">
           <div class="case-num t" data-uk="04 · Айдентика" data-en="04 · Identity">04 · Айдентика</div>
@@ -423,7 +431,7 @@
         <div class="exp-role t" data-uk="Голова інформаційного департаменту" data-en="Head of Information Department">Голова інформаційного департаменту</div>
         <div class="exp-place t" data-uk="КНУ ім. Тараса Шевченка" data-en="Taras Shevchenko National University">КНУ ім. Тараса Шевченка</div>
         <ul class="exp-list">
-          <li class="t" data-uk="Керівництво командою дизайнерів та копірайтерів" data-en="Team managemant of designers and copywriters">Керівництво командою: від ідеї до фінального візуального втілення</li>
+          <li class="t" data-uk="Керівництво командою дизайнерів та копірайтерів" data-en="Team management of designers and copywriters">Керівництво командою: від ідеї до фінального візуального втілення</li>
           <li class="t" data-uk="Менторство молодих дизайнерів та контроль якості контенту" data-en="Mentoring junior designers and content quality control">Менторство молодих дизайнерів та контроль якості контенту</li>
           <li class="t" data-uk="Кар'єрний ріст від лінійного дизайнера до голови департаменту" data-en="Grew from junior designer to Lead Designer and department head">Кар'єрний ріст від лінійного дизайнера до Lead Designer і голови департаменту</li>
         </ul>
@@ -539,7 +547,6 @@
 </footer>
 
 <script>
-// Скріпти залишаються такими ж, вони не залежать від шрифтів
 let lang = 'uk';
 function setLang(l) {
   lang = l;
